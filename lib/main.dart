@@ -60,18 +60,6 @@ class Home extends StatelessWidget {
               onPressed: () => _showDialog(context),
               child: const Text('Show alert dialog (platform)'),
             ),
-            const SizedBox(height: 20),
-            Builder(builder: (context) {
-              return ElevatedButton(
-                onPressed: () => _showBottomsheet(context),
-                child: const Text('Show bottom sheet'),
-              );
-            }),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () => _showSnackBar(context),
-              child: const Text('Show toast'),
-            ),
 */
           ],
         ),
@@ -113,23 +101,6 @@ class Home extends StatelessWidget {
     });
   }
 
-/*
-  void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-              title: const Text("AlertDialog"),
-              content: const Text("qusto è un messaggio"),
-              actions: [
-                TextButton(
-                    child: const Text('Close'),
-                    onPressed: () => Navigator.of(context).pop())
-              ]);
-        });
-  }
-*/
-
   void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
     showDialog(
         context: context,
@@ -144,8 +115,6 @@ class Home extends StatelessWidget {
               ]);
         });
   }
-}
-
 
 /*
     const alert = PlatformAlert(
@@ -154,3 +123,5 @@ class Home extends StatelessWidget {
     );
     alert.show(context, style);
 */
+
+}

@@ -11,11 +11,7 @@ class PlatformAlert {
   void show(BuildContext context, TargetPlatform? style) {
     final platform = Theme.of(context).platform;
 
-    if (style == TargetPlatform.iOS) {
-      _buildCupertinoAlert(context);
-    } else if (style == TargetPlatform.android) {
-      _buildMaterialAlert(context);
-    } else if (platform == TargetPlatform.iOS) {
+    if (platform == TargetPlatform.iOS) {
       _buildCupertinoAlert(context);
     } else {
       _buildMaterialAlert(context);
