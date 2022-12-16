@@ -28,11 +28,21 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
+              onPressed: () => _showSnackBar(context),
+              child: const Text('Show toast'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _showAlertDialog(context),
+              child: const Text('Show alert dialog'),
+            ),
+
+/*
+            ElevatedButton(
               onPressed: () =>
                   _showDialog(context, style: TargetPlatform.android),
               child: const Text('Show alert dialog (material)'),
             ),
-            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () => _showDialog(context, style: TargetPlatform.iOS),
               child: const Text('Show alert dialog (cupertino)'),
@@ -51,16 +61,17 @@ class Home extends StatelessWidget {
             }),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => _showToast(context),
+              onPressed: () => _showSnackBar(context),
               child: const Text('Show toast'),
             ),
+*/
           ],
         ),
       ),
     );
   }
 
-  void _showToast(BuildContext context) {
+  void _showSnackBar(BuildContext context) {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(
@@ -95,11 +106,32 @@ class Home extends StatelessWidget {
     ));
   }
 
-  void _showDialog(BuildContext context, {TargetPlatform? style}) {
+  void _buildMaterialAlert(BuildContext context, String title, String message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: Text(title),
+              content: Text(message),
+              actions: [
+                TextButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop())
+              ]);
+        });
+  }
+
+  void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
+    var alert =
+        _buildMaterialAlert(context, "AlertDialog", "Questo è un messaggio");
+  }
+}
+
+
+/*
     const alert = PlatformAlert(
       title: 'AlertDialog test!',
       message: 'This is a message',
     );
     alert.show(context, style);
-  }
-}
+*/
