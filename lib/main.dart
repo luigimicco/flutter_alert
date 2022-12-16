@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'platform_alert.dart';
 
 void main() => runApp(new MyApp());
@@ -95,14 +96,14 @@ class Home extends StatelessWidget {
         builder: (context) {
           return SafeArea(
               child: Container(
-            color: Theme.of(context).cardColor,
+            color: Colors.red[200],
             width: double.infinity,
             child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30.0),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Text('BottomSheet test!',
+                  Text('BottomSheet',
                       style: Theme.of(context).textTheme.headline6),
-                  const Text('This is a message')
+                  const Text('Questo è un messaggio')
                 ])),
           ));
         });
@@ -112,36 +113,7 @@ class Home extends StatelessWidget {
     });
   }
 
-  Widget _buildRunCompleteSheet(context) {
-    return SafeArea(
-        child: Container(
-      color: Theme.of(context).cardColor,
-      width: double.infinity,
-      child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30.0),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Text('BottomSheet test!',
-                style: Theme.of(context).textTheme.headline6),
-            const Text('This is a message')
-          ])),
-    ));
-  }
-
-  void _buildMaterialAlert(BuildContext context, String title, String message) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-              title: Text(title),
-              content: Text(message),
-              actions: [
-                TextButton(
-                    child: const Text('Close'),
-                    onPressed: () => Navigator.of(context).pop())
-              ]);
-        });
-  }
-
+/*
   void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
     showDialog(
         context: context,
@@ -151,6 +123,22 @@ class Home extends StatelessWidget {
               content: const Text("qusto è un messaggio"),
               actions: [
                 TextButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop())
+              ]);
+        });
+  }
+*/
+
+  void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+              title: const Text("AlertDialog"),
+              content: const Text("qusto è un messaggio"),
+              actions: [
+                CupertinoButton(
                     child: const Text('Close'),
                     onPressed: () => Navigator.of(context).pop())
               ]);
