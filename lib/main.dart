@@ -36,6 +36,13 @@ class Home extends StatelessWidget {
               onPressed: () => _showAlertDialog(context),
               child: const Text('Show alert dialog'),
             ),
+            const SizedBox(height: 20),
+            Builder(builder: (context) {
+              return ElevatedButton(
+                onPressed: () => _showBottomsheet(context),
+                child: const Text('Show bottom sheet'),
+              );
+            }),
 
 /*
             ElevatedButton(
@@ -83,8 +90,22 @@ class Home extends StatelessWidget {
   }
 
   void _showBottomsheet(BuildContext context) {
-    final controller =
-        showBottomSheet(context: context, builder: _buildRunCompleteSheet);
+    final controller = showBottomSheet(
+        context: context,
+        builder: (context) {
+          return SafeArea(
+              child: Container(
+            color: Theme.of(context).cardColor,
+            width: double.infinity,
+            child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30.0),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Text('BottomSheet test!',
+                      style: Theme.of(context).textTheme.headline6),
+                  const Text('This is a message')
+                ])),
+          ));
+        });
 
     Future.delayed(const Duration(seconds: 5)).then((_) {
       controller.close();
@@ -122,8 +143,18 @@ class Home extends StatelessWidget {
   }
 
   void _showAlertDialog(BuildContext context, {TargetPlatform? style}) {
-    var alert =
-        _buildMaterialAlert(context, "AlertDialog", "Questo è un messaggio");
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+              title: const Text("AlertDialog"),
+              content: const Text("qusto è un messaggio"),
+              actions: [
+                TextButton(
+                    child: const Text('Close'),
+                    onPressed: () => Navigator.of(context).pop())
+              ]);
+        });
   }
 }
 
